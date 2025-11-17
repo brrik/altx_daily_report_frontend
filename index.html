@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>AltX日報</title>
+</head>
+<body>
+    <div class="header">
+        <div class="header-item">
+            <p>AltX 日々のおもひで</p>
+            <button onclick="newPost()">新規投稿</button>
+        </div>
+        <div class="header-item">
+            <input id="serch_kw" type="text" placeholder="検索キーワード">
+            <button onclick="search_item()">検索</button>
+        </div>
+        <div class="left_item">
+            <button onclick="addTable()">全件表示</button>
+            <button onclick="showBookmarks()">ブックマークのみ表示</button>
+        </div>
+    </div>
+    <div class="overlay">
+        <div class="overlay_items" id="new_thread">
+            <img src="close_icon.png" alt="閉じる" onclick="hideOverlay()">
+            <h2>日報の新規投稿</h2>
+            <form id="new_knowledge" class="form-container">
+                <div class="form-group">
+                    <label for="userName">投稿者(必須)</label>
+                    <input type="text" id="userName" name="PostedBy" placeholder="投稿者名" required>
+                    <label for="inputTitle">投稿日(必須)</label>
+                    <input type="text" id="inputTitle" name="Title" placeholder="yyyymmdd" required>
+                </div>
+                <div class="form-group">
+                    <label for="inputData">本文(必須)</label>
+                    <textarea id="inputData" name="Content" placeholder="日報の内容" required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>タグ（任意で最大3つ）</label>
+                    <div class="tag-group">
+                        <input type="text" name="Tag1" placeholder="タグ1">
+                        <input type="text" name="Tag2" placeholder="タグ2">
+                        <input type="text" name="Tag3" placeholder="タグ3">
+                    </div>
+                </div>
+
+                <button type="submit">送信</button>
+            </form>
+            <button id="new_post_cancel" onclick="hideOverlay()">キャンセル</button>
+        </div>
+    </div>
+    <div class="overlay">
+        <div class="overlay_items">
+            <img src="close_icon.png" alt="閉じる" onclick="hideOverlay()">
+            <h2>削除依頼</h2>
+            <p>以下の内容に削除依頼をしますか？</p>
+            <p id="delItemID"></p>
+            <p id="delItemField"></p>
+            <div class="form-group">
+                <label for="delReq">削除依頼理由（必須）</label>
+                <textarea name="delReq" id="delReqReason" placeholder="削除依頼理由"></textarea>
+            </div>
+            <button onclick="hideOverlay()">削除依頼をする</button>
+            <button onclick="hideOverlay()">キャンセル</button>
+        </div>
+    </div>
+    <div class="overlay">
+        <div class="overlay_items">
+            <img src="close_icon.png" alt="閉じる" onclick="hideOverlay()">
+            <h2>日報詳細</h2>
+            <img src="" id="bookmark_button" alt="ブックマーク" onclick="">
+            <img src="" id="like_button" alt="いいね" onclick="">
+            <div id="kn_detail_data" class="form-group">
+                <h3>投稿日：<span id="kn_detail_Title"></span></h3>
+                <p>ID：<span id="kn_detail_id"></span></p>
+                <p>投稿者：<span id="kn_detail_name"></span></p>
+                <p>内容：</p>
+                <p id="kn_detail_content"></p>
+                <div class="tag-group">
+                    <p><span id="kn_detail_tag1"></span></p>
+                    <p><span id="kn_detail_tag2"></span></p>
+                    <p><span id="kn_detail_tag3"></span></p>
+                </div>
+            </div>
+            <form id="new_comment" class="form-container">
+                <div class="form-group">
+                    <label for="comment_name">投稿者名</label>
+                    <input type="text" id="comment_name" name="PostedBy" placeholder="投稿者名">
+                </div>
+                <div class="form-group">
+                    <label for="comment">コメント</label>
+                    <textarea name="Content" id="comment" placeholder="コメント"></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit">投稿</button>
+                </div>
+            </form>
+            <div id="comment_form">
+
+            </div>
+            <button onclick="hideOverlay()">キャンセル</button>
+        </div>
+    </div>
+    <div class="overlay">
+        <div class="overlay_items">
+            <h1>Loading・・・</h1>
+        </div>
+    </div>
+    <div id="main">
+    </div>
+    
+
+    <script src="script.js"></script>
+</body>
+</html>
